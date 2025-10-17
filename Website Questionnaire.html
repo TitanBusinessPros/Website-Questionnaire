@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titan Business Pros - Website Questionnaire</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 
+        0 0 60px rgba(56, 189, 248, 0.3),
+        0 0 100px rgba(168, 85, 247, 0.2),
+        inset 0 0 80px rgba(56, 189, 248, 0.05);
+      border: 2px solid rgba(56, 189, 248, 0.3);
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
+      }
+      to {
+        filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.8));
+      }
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 40px;
+      font-size: 1.1em;
+    }
+
+    .question-block {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+      border-left: 4px solid #38bdf8;
+      transition: all 0.3s ease;
+    }
+
+    .question-block:hover {
+      border-left-color: #a855f7;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+      transform: translateX(5px);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #38bdf8;
+      font-size: 1.05em;
+    }
+
+    .required {
+      color: #f43f5e;
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 2px solid rgba(56, 189, 248, 0.3);
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="url"]:focus,
+    input[type="tel"]:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #a855f7;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    .checkbox-group,
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .checkbox-item,
+    .radio-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .checkbox-item:hover,
+    .radio-item:hover {
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateX(3px);
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      cursor: pointer;
+      accent-color: #38bdf8;
+    }
+
+    .checkbox-item label,
+    .radio-item label {
+      margin: 0;
+      color: #cbd5e1;
+      font-weight: 400;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 1.2em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.6);
+    }
+
+    button:active {
+      transform: translateY(-1px);
+    }
+
+    .helper-text {
+      font-size: 0.9em;
+      color: #94a3b8;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .question-block {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Titan Business Pros Website Questionnaire</h1>
+    <p class="subtitle">Help us understand your vision for the perfect website</p>
+
+    <form action="https://formsubmit.co/Titanbusinesspros@gmail.com" method="POST">
+      <!-- FormSubmit Configuration -->
+      <input type="hidden" name="_subject" value="New Website Questionnaire Submission">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://titanbusinesspros.github.io/MooreOklahoma/thank-you.html">
+
+      <!-- Question 1 -->
+      <div class="question-block">
+        <label for="name">1. What is your name? <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-block">
+        <label for="email">2. What is your email address? <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question-block">
+        <label for="phone">3. What is your phone number?</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question-block">
+        <label for="company">4. What is your company/business name? <span class="required">*</span></label>
+        <input type="text" id="company" name="company" required>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question-block">
+        <label for="industry">5. What industry is your business in? <span class="required">*</span></label>
+        <input type="text" id="industry" name="industry" required>
+        <p class="helper-text">E.g., retail, healthcare, technology, construction, etc.</p>
+      </div>
+
+      <!-- Question 6 -->
+      <div class="question-block">
+        <label for="website-type">6. What type of website do you need? <span class="required">*</span></label>
+        <select id="website-type" name="website-type" required>
+          <option value="">Select an option</option>
+          <option value="business">Business/Corporate</option>
+          <option value="ecommerce">E-commerce</option>
+          <option value="portfolio">Portfolio</option>
+          <option value="blog">Blog</option>
+          <option value="landing">Landing Page</option>
+          <option value="personal">Personal</option>
+          <option value="nonprofit">Non-profit</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Question 7 -->
+      <div class="question-block">
+        <label>7. Do you currently have a website? <span class="required">*</span></label>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input type="radio" id="has-website-yes" name="has-website" value="yes" required>
+            <label for="has-website-yes">Yes, I have an existing website</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="has-website-no" name="has-website" value="no">
+            <label for="has-website-no">No, this is a new website</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 8 -->
+      <div class="question-block">
+        <label for="current-url">8. If you have an existing website, what is the URL?</label>
+        <input type="url" id="current-url" name="current-url" placeholder="https://example.com">
+      </div>
+
+      <!-- Question 9 -->
+      <div class="question-block">
+        <label for="purpose">9. What is the main purpose of your website? <span class="required">*</span></label>
+        <textarea id="purpose" name="purpose" required placeholder="Describe what you want to achieve with your website..."></textarea>
+      </div>
+
+      <!-- Question 10 -->
+      <div class="question-block">
+        <label for="target-audience">10. Who is your target audience? <span class="required">*</span></label>
+        <textarea id="target-audience" name="target-audience" required placeholder="Describe your ideal customers or visitors..."></textarea>
+      </div>
+
+      <!-- Question 11 -->
+      <div class="question-block">
+        <label>11. What features do you need on your website? <span class="required">*</span></label>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="contact-form" name="features" value="Contact Form">
+            <label for="contact-form">Contact Form</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="online-store" name="features" value="Online Store">
+            <label for="online-store">Online Store/Shopping Cart</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="blog" name="features" value="Blog">
+            <label for="blog">Blog</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="gallery" name="features" value="Photo Gallery">
+            <label for="gallery">Photo/Video Gallery</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="booking" name="features" value="Booking System">
+            <label for="booking">Booking/Appointment System</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="social" name="features" value="Social Media">
+            <label for="social">Social Media Integration</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="newsletter" name="features" value="Newsletter">
+            <label for="newsletter">Newsletter Signup</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="testimonials" name="features" value="Testimonials">
+            <label for="testimonials">Customer Testimonials</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 12 -->
+      <div class="question-block">
+        <label for="pages">12. How many pages do you expect your website to have? <span class="required">*</span></label>
+        <select id="pages" name="pages" required>
+          <option value="">Select an option</option>
+          <option value="1-5">1-5 pages</option>
+          <option value="6-10">6-10 pages</option>
+          <option value="11-20">11-20 pages</option>
+          <option value="20+">More than 20 pages</option>
+          <option value="unsure">Not sure yet</option>
+        </select>
+      </div>
+
+      <!-- Question 13 -->
+      <div class="question-block">
+        <label for="competitors">13. List 2-3 competitor websites or websites you admire:</label>
+        <textarea id="competitors" name="competitors" placeholder="Include URLs and what you like about them..."></textarea>
+      </div>
+
+      <!-- Question 14 -->
+      <div class="question-block">
+        <label for="design-preferences">14. Describe your design preferences (colors, style, mood): <span class="required">*</span></label>
+        <textarea id="design-preferences" name="design-preferences" required placeholder="E.g., modern and minimalist, bold and colorful, professional and corporate..."></textarea>
+      </div>
+
+      <!-- Question 15 -->
+      <div class="question-block">
+        <label for="branding">15. Do you have existing branding materials (logo, colors, fonts)?</label>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input type="radio" id="branding-yes" name="branding" value="yes">
+            <label for="branding-yes">Yes, I have branding materials</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="branding-partial" name="branding" value="partial">
+            <label for="branding-partial">Partially (some materials)</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="branding-no" name="branding" value="no">
+            <label for="branding-no">No, I need help with branding</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 16 -->
+      <div class="question-block">
+        <label for="content">16. Will you provide the content (text, images, videos)?</label>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input type="radio" id="content-yes" name="content" value="yes">
+            <label for="content-yes">Yes, I'll provide all content</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="content-partial" name="content" value="partial">
+            <label for="content-partial">Partially (need help with some)</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="content-no" name="content" value="no">
+            <label for="content-no">No, I need content creation help</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 17 -->
+      <div class="question-block">
+        <label for="domain">17. Do you have a domain name?</label>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input type="radio" id="domain-yes" name="domain" value="yes">
+            <label for="domain-yes">Yes, I own a domain</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="domain-need" name="domain" value="need">
+            <label for="domain-need">No, I need to purchase one</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="domain-help" name="domain" value="help">
+            <label for="domain-help">I need help choosing one</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 18 -->
+      <div class="question-block">
+        <label for="timeline">18. What is your ideal timeline for launching the website? <span class="required">*</span></label>
+        <select id="timeline" name="timeline" required>
+          <option value="">Select an option</option>
+          <option value="asap">As soon as possible</option>
+          <option value="1-month">Within 1 month</option>
+          <option value="2-3-months">2-3 months</option>
+          <option value="3-6-months">3-6 months</option>
+          <option value="flexible">Flexible timeline</option>
+        </select>
+      </div>
+
+      <!-- Question 19 -->
+      <div class="question-block">
+        <label for="budget">19. What is your budget range for this project? <span class="required">*</span></label>
+        <select id="budget" name="budget" required>
+          <option value="">Select an option</option>
+          <option value="under-1000">Under $1,000</option>
+          <option value="1000-3000">$1,000 - $3,000</option>
+          <option value="3000-5000">$3,000 - $5,000</option>
+          <option value="5000-10000">$5,000 - $10,000</option>
+          <option value="10000+">$10,000+</option>
+          <option value="flexible">Flexible/Need consultation</option>
+        </select>
+      </div>
+
+      <!-- Question 20 -->
+      <div class="question-block">
+        <label for="additional-info">20. Is there anything else you'd like us to know about your project?</label>
+        <textarea id="additional-info" name="additional-info" placeholder="Any additional requirements, concerns, or questions..."></textarea>
+      </div>
+
+      <button type="submit">Submit Questionnaire</button>
+    </form>
+  </div>
+</body>
+</html>
